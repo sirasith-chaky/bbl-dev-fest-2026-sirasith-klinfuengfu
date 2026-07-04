@@ -17,15 +17,12 @@ namespace bbl_dev_fest_2026_sirasith_klinfuengfu.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<User>), StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<User>> GetAll()
         {
             return Ok(_userService.GetAll());
         }
 
         [HttpGet("{userId:long}")]
-        [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<User> GetById(long userId)
         {
             var user = _userService.GetById(userId);
@@ -38,8 +35,6 @@ namespace bbl_dev_fest_2026_sirasith_klinfuengfu.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(User), StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<User> Create([FromBody] UserRequest request)
         {
             var created = _userService.Create(request);
@@ -47,9 +42,6 @@ namespace bbl_dev_fest_2026_sirasith_klinfuengfu.Controllers
         }
 
         [HttpPut("{userId:long}")]
-        [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<User> Update(long userId, [FromBody] UserRequest request)
         {
             var updated = _userService.Update(userId, request);
@@ -62,8 +54,6 @@ namespace bbl_dev_fest_2026_sirasith_klinfuengfu.Controllers
         }
 
         [HttpDelete("{userId:long}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Delete(long userId)
         {
             var deleted = _userService.Delete(userId);
